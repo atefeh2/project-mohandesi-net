@@ -69,7 +69,7 @@
             </tr>
                  </tbody>
         </table>     
-        <a href="#" class="button">Checkout</a>
+        <a href="{{route('checkout.shipping')}}" class="button">Checkout</a>
    
 
  </div>

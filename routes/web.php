@@ -24,6 +24,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index');
 Route::resource('/cart', 'CartController');
+Route::get('/cart/add-item/{id}', 'CartController@addItem')->name('cart.addItem');
 
 
 Route::group(['prefix' => 'admin','middleware'=> ['auth','admin'] ], function() {
@@ -35,5 +36,14 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth','admin'] ], function() 
     
     Route::resource('product', 'ProductsController');
     Route::resource('category', 'CategoriesController');
-    
+   
 });
+Route::resource('address','AddressController');
+
+//Route::get('checkout', 'CheckoutController@step1');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('shipping-info','CheckoutController@shipping')->name('checkout.shipping');
+});
+
+Route::get('payment', 'CheckoutController@payment')->name('checkout.payment');
+Route::post('store-payment','CheckoutController@storePayment')->name('payment.store');

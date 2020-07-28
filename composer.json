@@ -6,6 +6,9 @@
         "framework",
         "laravel"
     ],
+
+  
+
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
@@ -17,7 +20,9 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "laravelcollective/html": "^6.1",
-        "rackspace/php-opencloud": "dev-master"
+        "rackspace/php-opencloud": "dev-master",
+        "stripe/stripe-php": "4.*"
+       
     },
     "require-dev": {
         "facade/ignition": "^2.0",

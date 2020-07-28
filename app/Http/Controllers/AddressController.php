@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
+use App\Address;
 
-class CartController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cartItems=Cart::content();
-       
-        return view('cart.index',compact('cartItems'));
+        //
     }
 
     /**
@@ -26,7 +25,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -37,7 +36,15 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'addressline'=>'required',
+            'city'=>'required',
+            'state'=>'required',
+            'zip'=>'required|integer',
+            'phone'=>'required|integer',
+        ]);
+        Auth::user()->address()->create($request->all());
+        return redirect()->route('checkout.payment');
     }
 
     /**
@@ -59,22 +66,8 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
-
-    public function addItem($id){
-
-        $product=Product::find($id);
-        Cart::add($id,$product->name,1,$product->price,['size'=>'medium']);
-        return back();
-
-
-
-    }
-
-
-
-
 
     /**
      * Update the specified resource in storage.
@@ -85,8 +78,7 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Cart::update($id,['qty'=>$request->qty,"options"=>['size'=>$request->size]]);
-        return back();
+        //
     }
 
     /**
@@ -97,7 +89,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::remove($id);
-        return back();
+        //
     }
 }
