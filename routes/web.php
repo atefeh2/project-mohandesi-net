@@ -28,6 +28,7 @@ Route::get('/cart/add-item/{id}', 'CartController@addItem')->name('cart.addItem'
 
 
 Route::group(['prefix' => 'admin','middleware'=> ['auth','admin'] ], function() {
+    Route::post('toggledeliver/{orderId}', 'OrderController@toggledeliver')->name('toggle.deliver');
  
     Route::get('/', function() {
         return view ('admin.index');
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth','admin'] ], function() 
     
     Route::resource('product', 'ProductsController');
     Route::resource('category', 'CategoriesController');
+    Route::get('orders/{type?}', 'OrderController@Orders');
    
 });
 Route::resource('address','AddressController');
