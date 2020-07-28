@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
+
     /**
      * The attributes that should be cast to native types.
      *

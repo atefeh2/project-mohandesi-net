@@ -1,6 +1,6 @@
 
 
-@extends('layout.main')
+@extends('layouts.main')
 
 @section('title','Shirts')
 
@@ -12,7 +12,7 @@
 <!-- Latest SHirts -->
         <div class="row">
             @forelse($shirts as $shirt)
-            <div class="small-3 columns">
+            <div class="small-3 medium-3 large-3 columns">
                 <div class="item-wrapper">
                     <div class="img-wrapper">
                         <a class="button expanded add-to-cart">
