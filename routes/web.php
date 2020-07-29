@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth','admin'] ], function() 
         return view ('admin.index');
     })->name('admin.index');
 
-    
+    Route::post('product/image-upload/{productId}','ProductsController@uploadImages');
     Route::resource('product', 'ProductsController');
     Route::resource('category', 'CategoriesController');
     Route::get('orders/{type?}', 'OrderController@Orders');
@@ -45,7 +45,11 @@ Route::resource('address','AddressController');
 //Route::get('checkout', 'CheckoutController@step1');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('shipping-info','CheckoutController@shipping')->name('checkout.shipping');
+    
 });
 
 Route::get('payment', 'CheckoutController@payment')->name('checkout.payment');
 Route::post('store-payment','CheckoutController@storePayment')->name('payment.store');
+
+
+

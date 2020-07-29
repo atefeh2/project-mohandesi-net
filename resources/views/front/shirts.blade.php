@@ -1,48 +1,23 @@
-
-
 @extends('layouts.main')
 
 @section('title','Shirts')
-
 @section('content')
-
-
-
-<!-- products listing -->
-<!-- Latest SHirts -->
-        <div class="row">
-            @forelse($shirts as $shirt)
+    <!-- products listing -->
+    <!-- Latest SHirts -->
+    <div class="row">
+        @forelse($shirts as $shirt)
             <div class="small-3 medium-3 large-3 columns">
-                <div class="item-wrapper">
-                    <div class="img-wrapper">
-                        <a href="{{route('cart.addItem',$shirt->id')}}" class="button expanded add-to-cart">
-                            Add to Cart
-                        </a>
-                        <a href="#">
-                            <img src="{{url('images',$shirt->image)}}"/>
-                        </a>
-                    </div>
-                    <a href="{{route('shirt')}}">
-                        <h3>
-                            {{$shirt->name}}
-                        </h3>
-                    </a>
-                    <h5>
-
-                        ${{$shirt->price}}
-                        
-                        $19.99
-                    </h5>
-                    <p>
-                        
-                        {{$shirt->description}}
-       
-                    </p>
-                </div>
+                <product :shirt="{{$shirt}}"
+                         shirtlink="{{route('shirt',$shirt->id)}}"
+                         shirtimagepath='{{asset("/images/$shirt->image")}}'
+                >
+                </product>
             </div>
-            @empty
-            <h3>No shirts</h3>
-            @endforelse
-            
-        </div>
-@endsection        
+
+        @empty
+        <h3>No shirts</h3>
+       @endforelse
+
+        <compare></compare>
+    </div>
+@endsection
